@@ -2,7 +2,11 @@
 
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { motion } from 'framer-motion'
+import {
+  motion,
+  useScroll,
+  useTransform,
+} from 'framer-motion'
 
 const fadeUp = {
   hidden: {
@@ -20,19 +24,47 @@ const fadeUp = {
 }
 
 export function Hero() {
+
+  const { scrollY } = useScroll()
+
+  // text movement
+  const textY = useTransform(scrollY, [0, 700], [0, 120])
+  const textOpacity = useTransform(scrollY, [0, 450], [1, 0])
+
+  // image movement
+  const imageY = useTransform(scrollY, [0, 1200], [0, 180])
+
+  // glow movement
+  const glowY = useTransform(scrollY, [0, 1000], [0, -120])
+
+  // floral movement
+  const floralY = useTransform(scrollY, [0, 1000], [0, -80])
+
   return (
     <section className="relative min-h-[100vh] overflow-hidden bg-[#f7f2ed]">
 
-      {/* Atmospheric Background */}
+      {/* Background */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
 
-        {/* Warm cinematic glow */}
-        <div className="absolute right-[-8%] top-[-10%] h-[500px] w-[500px] rounded-full bg-[#d89a8d]/10 blur-3xl" />
+        {/* cinematic glow */}
+        <motion.div
+          style={{ y: glowY }}
+          className="
+            absolute
+            right-[-8%]
+            top-[-10%]
+            h-[500px]
+            w-[500px]
+            rounded-full
+            bg-[#d89a8d]/10
+            blur-3xl
+          "
+        />
 
-        {/* Soft romantic fade */}
+        {/* soft vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.65),transparent_40%)]" />
 
-        {/* Grain texture */}
+        {/* grain */}
         <div className="absolute inset-0 opacity-[0.03] mix-blend-multiply bg-[url('/grain.png')]" />
       </div>
 
@@ -44,15 +76,17 @@ export function Hero() {
           variants={fadeUp}
           initial="hidden"
           animate="show"
+          style={{
+            y: textY,
+            opacity: textOpacity,
+          }}
           className="max-w-[560px] lg:col-span-5"
         >
 
-          {/* Eyebrow */}
           <p className="mb-5 text-[11px] uppercase tracking-[0.35em] text-[#b88a7c]">
             Handcrafted Luxury
           </p>
 
-          {/* Heading */}
           <h1 className="leading-[0.96] tracking-[-0.05em] text-[#2b2624]">
 
             <span className="block font-serif text-[4rem] sm:text-[5rem] lg:text-[6.2rem]">
@@ -68,7 +102,6 @@ export function Hero() {
             </span>
           </h1>
 
-          {/* Supporting Copy */}
           <div className="mt-8 max-w-[470px]">
 
             <p className="text-[1.03rem] leading-[1.9] text-[#5c514c]/80">
@@ -77,7 +110,6 @@ export function Hero() {
               something unforgettable.
             </p>
 
-            {/* Emotional Detail */}
             <p className="mt-5 text-sm italic tracking-wide text-[#b88a7c]">
               crafted for intimate celebrations
             </p>
@@ -128,7 +160,7 @@ export function Hero() {
         {/* RIGHT VISUAL */}
         <div className="relative lg:col-span-7">
 
-          {/* Floating atmosphere */}
+          {/* floating atmosphere */}
           <motion.div
             animate={{
               y: [0, -20, 0],
@@ -138,10 +170,19 @@ export function Hero() {
               repeat: Infinity,
               ease: 'easeInOut',
             }}
-            className="absolute -left-10 top-16 h-[220px] w-[220px] rounded-full bg-[#e6c7be]/20 blur-3xl"
+            className="
+              absolute
+              -left-10
+              top-16
+              h-[220px]
+              w-[220px]
+              rounded-full
+              bg-[#e6c7be]/20
+              blur-3xl
+            "
           />
 
-          {/* Main Editorial Image */}
+          {/* Main Image */}
           <motion.div
             initial={{
               opacity: 0,
@@ -154,6 +195,9 @@ export function Hero() {
             transition={{
               duration: 1.6,
               ease: [0.22, 1, 0.36, 1],
+            }}
+            style={{
+              y: imageY,
             }}
             className="
               relative
@@ -179,15 +223,16 @@ export function Hero() {
               "
             />
 
-            {/* cinematic overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/5" />
 
-            {/* romantic fade */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,transparent,rgba(0,0,0,0.08))]" />
           </motion.div>
 
-          {/* Floating Floral Accent */}
-          <div
+          {/* Floral Accent */}
+          <motion.div
+            style={{
+              y: floralY,
+            }}
             className="
               absolute
               bottom-[-24px]
@@ -208,7 +253,7 @@ export function Hero() {
               fill
               className="object-cover"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -222,7 +267,17 @@ export function Hero() {
           repeat: Infinity,
           ease: 'easeInOut',
         }}
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-3 lg:flex"
+        className="
+          absolute
+          bottom-8
+          left-1/2
+          hidden
+          -translate-x-1/2
+          flex-col
+          items-center
+          gap-3
+          lg:flex
+        "
       >
 
         <span className="text-[10px] uppercase tracking-[0.35em] text-[#b88a7c]/70">
