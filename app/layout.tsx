@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import WhatsAppButton from '@/components/whatsapp-button'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
@@ -52,6 +53,8 @@ export default function RootLayout({
           <Footer />
           </SmoothScroll>
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        {/* WHATSAPP BUTTON */}
+        <WhatsAppButton />
       </body>
     </html>
   )
