@@ -30,18 +30,25 @@ export default function CTASection() {
           and every special moment in between.
         </p>
 
-        <button className="
-          bg-white
-          text-[#C97B63]
-          px-10
-          py-5
-          rounded-full
-          transition
-          duration-300
-          hover:scale-[1.03]
-        ">
+        <a
+          href="https://wa.me/919046973192"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp"
+          className="
+            inline-block
+            bg-white
+            text-[#C97B63]
+            px-10
+            py-5
+            rounded-full
+            transition
+            duration-300
+            hover:scale-[1.03]
+          "
+        >
           Order on WhatsApp
-        </button>
+        </a>
       </motion.div>
     </section>
   )
