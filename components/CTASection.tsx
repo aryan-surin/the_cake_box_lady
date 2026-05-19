@@ -31,7 +31,7 @@ export default function CTASection() {
         </p>
 
         <a
-          href="https://wa.me/919046973192"
+          href="https://wa.me/9197338 52659"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"

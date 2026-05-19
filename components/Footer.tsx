@@ -29,7 +29,7 @@ export default function Footer() {
   
             <ul className="space-y-3 text-[#6E4B3A]">
               <li>hello@cakeboxlady.com</li>
-              <li>+91 9046973192 </li>
+              <li>+91 97338 52659 </li>
               <li>Instagram</li>
               <li>WhatsApp</li>
             </ul>
